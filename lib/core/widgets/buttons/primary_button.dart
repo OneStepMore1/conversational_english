@@ -1,3 +1,4 @@
+import 'package:conversational_english/responsive_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -79,7 +80,7 @@ class WPrimaryButtonState extends State<WPrimaryButton> {
       },
       child: Container(
         height: widget.height ?? PTheme.fieldHeight,
-        width: ScreenUtil().screenWidth,
+        width: widget.width ?? ScreenUtil().screenWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(PTheme.boarderRadius),
           border: widget.border
@@ -112,6 +113,7 @@ class WPrimaryButtonState extends State<WPrimaryButton> {
                         ? (widget.color ?? context.theme.buttonTheme.colorScheme!.primary)
                         : context.theme.buttonTheme.colorScheme!.tertiary,
                     fontWeight: FontWeight.bold,
+                    fontSize: Responsive.isDesktop() ? 25.sp : 16.sp,
                   ),
                 ),
               )

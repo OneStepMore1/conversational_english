@@ -1,3 +1,4 @@
+import 'package:conversational_english/responsive_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PTheme {
@@ -9,7 +10,7 @@ class PTheme {
   static double buttonHeight = 45.h;
   static double imageDefaultX = 90.w;
   static double imageDefaultY = 92.h;
-  static double spaceLY = 20.h;
+  static double spaceLY = Responsive.isDesktop() ? 60.h : 20.h;
   static double fieldHeight = 46.h;
   static double boarderRadius = 8.w;
 }

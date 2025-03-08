@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../util/constants/dimension_theme.dart';
 import '../../../util/extensions/extension.dart';
@@ -22,8 +21,8 @@ class WError extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            Assets.images.echologo,
+          Image.asset(
+            Assets.images.group.path,
             height: 200.h,
           ),
           Text(

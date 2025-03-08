@@ -25,6 +25,7 @@ class CTheme extends PowerController {
   late final ThemeData _lightTheme = ThemeData(
     brightness: Brightness.light,
     useMaterial3: true,
+    fontFamily: "Salsa-Regular",
     appBarTheme: const AppBarTheme(backgroundColor: PColors.appBarColor),
     primaryColor: PColors.white,
     dividerColor: Colors.grey[300],
@@ -97,7 +98,7 @@ class CTheme extends PowerController {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        color: const Color(0xFF292929),
+        color: Colors.white,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -139,12 +140,12 @@ class CTheme extends PowerController {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: TextStyle(
-        color: const Color(0xFF292929),
+        color: Colors.black12,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -154,7 +155,7 @@ class CTheme extends PowerController {
         fontWeight: FontWeight.w400,
       ),
       displayLarge: TextStyle(
-        color: Colors.white70,
+        color: Colors.black54,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -163,10 +164,10 @@ class CTheme extends PowerController {
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xFF002E5B),
         secondary: const Color(0xFF3AADE1),
-        tertiary: Colors.white,
+        tertiary: Colors.black,
         shadow: Colors.grey.withValues(alpha: 0.1),
       ),
-      highlightColor: Colors.white,
+      highlightColor: Colors.black,
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: ButtonStyle(

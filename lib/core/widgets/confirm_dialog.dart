@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../gen/assets.gen.dart';
 import '../../util/constants/default_values.dart';
 import '../../util/constants/dimension_theme.dart';
@@ -43,8 +42,8 @@ class ConfirmationDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             isSignUp == true
-                ? SvgPicture.asset(
-                    Assets.logo.logout,
+                ? Image.asset(
+                    Assets.images.group.path,
                     height: iconHeight ?? 50.h,
                   )
                 : Icon(
