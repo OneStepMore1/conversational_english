@@ -1,7 +1,8 @@
 import 'package:conversational_english/core/controllers/theme_controller.dart';
 import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/item_positions_listener.dart';
 import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/scrollable_positioned_list.dart';
-import 'package:conversational_english/features/headers/views/header_screen.dart';
+import 'package:conversational_english/features/home/widget/about_program_widget.dart';
+import 'package:conversational_english/features/home/widget/header_widget.dart';
 import 'package:conversational_english/features/home/controller/home_controller.dart';
 import 'package:conversational_english/features/home/models/top_bar_model.dart';
 import 'package:conversational_english/features/home/widget/top_bar_home.dart';
@@ -44,9 +45,7 @@ class _SHomeState extends State<SHome> {
 
   List<Widget> homewidgetlistsdesktop = [
     WHeaderSection(),
-    WHeaderSection(),
-    WHeaderSection(),
-    AboutCourseSection(),
+    WAboutCourseSection(),
     CourseProgramSection(),
     CourseBenefitsSection(),
     CourseInstructorsSection(),
@@ -109,18 +108,6 @@ class _SHomeState extends State<SHome> {
 }
 
 // Placeholder widgets for remaining sections
-class AboutCourseSection extends StatelessWidget {
-  const AboutCourseSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("About the Course"),
-      ],
-    );
-  }
-}
 
 class CourseProgramSection extends StatelessWidget {
   const CourseProgramSection({super.key});

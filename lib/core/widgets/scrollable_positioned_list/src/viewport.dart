@@ -92,9 +92,6 @@ class UnboundedRenderViewport extends RenderViewport {
   @override
   void performResize() {
     super.performResize();
-    // TODO: Figure out why this override is needed as a result of
-    // https://github.com/flutter/flutter/pull/61973 and see if it can be
-    // removed somehow.
     switch (axis) {
       case Axis.vertical:
         offset.applyViewportDimension(size.height);

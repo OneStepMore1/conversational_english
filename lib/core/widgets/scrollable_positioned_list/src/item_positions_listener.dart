@@ -20,8 +20,12 @@ abstract class ItemPositionsListener {
 
 /// Position information for an item in the list.
 class ItemPosition {
-  /// Create an [ItemPosition].
-  const ItemPosition({required this.index, required this.itemLeadingEdge, required this.itemTrailingEdge});
+  /// Creates an [ItemPosition].
+  const ItemPosition({
+    required this.index,
+    required this.itemLeadingEdge,
+    required this.itemTrailingEdge,
+  });
 
   /// Index of the item.
   final int index;
@@ -39,18 +43,19 @@ class ItemPosition {
   final double itemTrailingEdge;
 
   @override
-  bool operator ==(dynamic other) {
-    if (other.runtimeType != runtimeType) return false;
-    final ItemPosition otherPosition = other;
-    return otherPosition.index == index &&
-        otherPosition.itemLeadingEdge == itemLeadingEdge &&
-        otherPosition.itemTrailingEdge == itemTrailingEdge;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ItemPosition &&
+          runtimeType == other.runtimeType &&
+          index == other.index &&
+          itemLeadingEdge == other.itemLeadingEdge &&
+          itemTrailingEdge == other.itemTrailingEdge;
+
+  @override
+  int get hashCode => Object.hash(index, itemLeadingEdge, itemTrailingEdge);
+
+  @override
+  String toString() {
+    return 'ItemPosition(index: $index, itemLeadingEdge: $itemLeadingEdge, itemTrailingEdge: $itemTrailingEdge)';
   }
-
-  @override
-  int get hashCode => 31 * (31 * (7 + index.hashCode) + itemLeadingEdge.hashCode) + itemTrailingEdge.hashCode;
-
-  @override
-  String toString() =>
-      'ItemPosition(index: $index, itemLeadingEdge: $itemLeadingEdge, itemTrailingEdge: $itemTrailingEdge)';
 }

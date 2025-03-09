@@ -652,8 +652,9 @@ abstract class CustomRenderViewport extends RenderViewportBase<CustomSliverPhysi
 
   @override
   void setupParentData(RenderObject child) {
-    if (child.parentData is! CustomSliverPhysicalContainerParentData)
+    if (child.parentData is! CustomSliverPhysicalContainerParentData) {
       child.parentData = CustomSliverPhysicalContainerParentData();
+    }
   }
 
   /// The relative position of the zero scroll offset.

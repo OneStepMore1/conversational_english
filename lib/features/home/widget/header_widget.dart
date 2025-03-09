@@ -15,7 +15,7 @@ class WHeaderSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          gapY(200),
+          gapY(250),
           Row(
             children: [
               Column(
@@ -53,6 +53,7 @@ class WHeaderSection extends StatelessWidget {
             width: Responsive.isDesktop() ? 300.w : 100,
             text: "Enroll in the Course",
           ),
+          gapY(100),
         ],
       ),
     );

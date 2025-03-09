@@ -1,48 +1,29 @@
-// Copyright 2019 The Fuchsia Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-
 import 'wrapping.dart';
 import 'viewport.dart';
 
-/// A version of [CustomScrollView] that allows does not constrict the extents
-/// to be within 0 and 1. See [CustomScrollView] for more information.
 class UnboundedCustomScrollView extends CustomScrollView {
   final bool _shrinkWrap;
 
   const UnboundedCustomScrollView({
-    Key? key,
-    Axis scrollDirection = Axis.vertical,
-    bool reverse = false,
-    ScrollController? controller,
-    bool? primary,
-    ScrollPhysics? physics,
+    super.key,
+    super.scrollDirection,
+    super.reverse,
+    super.controller,
+    super.primary,
+    super.physics,
     bool shrinkWrap = false,
-    Key? center,
+    super.center,
     double anchor = 0.0,
-    double? cacheExtent,
-    List<Widget> slivers = const <Widget>[],
-    int? semanticChildCount,
-    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    super.cacheExtent,
+    super.slivers,
+    super.semanticChildCount,
+    super.dragStartBehavior,
   })  : _shrinkWrap = shrinkWrap,
         _anchor = anchor,
         super(
-          key: key,
-          scrollDirection: scrollDirection,
-          reverse: reverse,
-          controller: controller,
-          primary: primary,
-          physics: physics,
           shrinkWrap: false,
-          center: center,
-          cacheExtent: cacheExtent,
-          semanticChildCount: semanticChildCount,
-          dragStartBehavior: dragStartBehavior,
-          slivers: slivers,
         );
 
   // [CustomScrollView] enforces constraints on [CustomScrollView.anchor], so

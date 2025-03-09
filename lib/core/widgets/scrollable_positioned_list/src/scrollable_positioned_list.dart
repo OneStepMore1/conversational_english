@@ -305,7 +305,7 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList> wit
 
   bool _isTransitioning = false;
 
-  var _animationController;
+  AnimationController? _animationController;
 
   double previousOffset = 0;
 
@@ -539,7 +539,7 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList> wit
           startAnimationCallback = () {};
           _animationController?.dispose();
           _animationController = AnimationController(vsync: this, duration: duration)..forward();
-          opacity.parent = _opacityAnimation(opacityAnimationWeights).animate(_animationController);
+          opacity.parent = _opacityAnimation(opacityAnimationWeights).animate(_animationController!);
           secondary.scrollController.jumpTo(-direction *
               (_screenScrollCount * primary.scrollController.position.viewportDimension -
                   alignment * secondary.scrollController.position.viewportDimension));
@@ -550,8 +550,6 @@ class _ScrollablePositionedListState extends State<ScrollablePositionedList> wit
         });
       };
       setState(() {
-        // TODO: _startScroll can be re-entrant, which invalidates this assert.
-        // assert(!_isTransitioning);
         secondary.target = index;
         secondary.alignment = alignment;
         _isTransitioning = true;
