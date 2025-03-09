@@ -1,10 +1,12 @@
 import 'package:conversational_english/core/controllers/theme_controller.dart';
-import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/item_positions_listener.dart';
-import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/scrollable_positioned_list.dart';
 import 'package:conversational_english/features/home/widget/about_program_widget.dart';
+import 'package:conversational_english/features/home/widget/benefits_section_widget.dart';
+import 'package:conversational_english/features/home/widget/course_instructors_widget.dart';
 import 'package:conversational_english/features/home/widget/header_widget.dart';
 import 'package:conversational_english/features/home/controller/home_controller.dart';
 import 'package:conversational_english/features/home/models/top_bar_model.dart';
+import 'package:conversational_english/features/home/widget/program_widget.dart';
+import 'package:conversational_english/features/home/widget/student_review_widget.dart';
 import 'package:conversational_english/features/home/widget/top_bar_home.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
@@ -20,36 +22,53 @@ class SHome extends StatefulWidget {
 class _SHomeState extends State<SHome> {
   final CTheme cTheme = PowerVault.find();
   final CHome cHome = PowerVault.put(CHome());
-  late final ItemScrollController itemScrollController = ItemScrollController();
-  late final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
-  // CollectionReference reference = FirebaseFirestore.instance.collection("cvlink");
+  final ScrollController _scrollController = ScrollController();
+  double itemHeight = 100.0;
   @override
   void initState() {
     super.initState();
-    itemPositionsListener.itemPositions.addListener(() {
-      cHome.getCurrentIndex(inde: itemPositionsListener.itemPositions.value.first.index);
+    _scrollController.addListener(_onScroll);
+  }
 
-      cHome.gethoverbooleancategory(
-          hoverCurrentIndex: itemPositionsListener.itemPositions.value.first.index, values: true);
-      if (itemPositionsListener.itemPositions.value.last.itemLeadingEdge.isNegative) {
-        cHome.gettinglastIndexofhomeitem(
-          value: true,
-        );
-      } else {
-        cHome.gettinglastIndexofhomeitem(
-          value: false,
-        );
-      }
-    });
+  void _onScroll() {
+    // Get the current scroll position
+    double offset = _scrollController.offset;
+    // double viewportHeight = _scrollController.position.viewportDimension;
+
+    // Calculate which index is visible
+    int firstVisibleIndex = (offset / itemHeight).floor();
+
+    cHome.getCurrentIndex(inde: firstVisibleIndex);
+    cHome.gethoverbooleancategory(hoverCurrentIndex: firstVisibleIndex, values: true);
+
+    // Check if user scrolled to the last item
+    bool isAtBottom = _scrollController.position.pixels >= _scrollController.position.maxScrollExtent;
+    cHome.gettinglastIndexofhomeitem(value: isAtBottom);
+  }
+
+  void scrollToIndex(int index) {
+    double targetOffset = index * itemHeight;
+    _scrollController.animateTo(
+      targetOffset,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
   }
 
   List<Widget> homewidgetlistsdesktop = [
     WHeaderSection(),
     WAboutCourseSection(),
-    CourseProgramSection(),
-    CourseBenefitsSection(),
-    CourseInstructorsSection(),
-    StudentReviewsSection(),
+    WProgramSection(),
+    WBenefitsSection(),
+    WCourseInstructorsSection(),
+    WStudentReviewsSection(),
     PricingSection(),
     FAQSection(),
     FinalCTASection(),
@@ -57,7 +76,6 @@ class _SHomeState extends State<SHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0D2B41),
       body: SafeArea(
         child: Column(
           children: [
@@ -73,7 +91,7 @@ class _SHomeState extends State<SHome> {
                     (index) {
                       return TopBar(
                         indexx: index,
-                        itemScrollCon: itemScrollController,
+                        scrollController: _scrollController,
                       );
                     },
                   ),
@@ -90,11 +108,9 @@ class _SHomeState extends State<SHome> {
               ],
             ),
             Expanded(
-              child: ScrollablePositionedList.builder(
-                physics: const ScrollPhysics(),
+              child: ListView.builder(
+                controller: _scrollController,
                 itemCount: homewidgetlistsdesktop.length,
-                itemScrollController: itemScrollController,
-                itemPositionsListener: itemPositionsListener,
                 itemBuilder: (context, index) {
                   return homewidgetlistsdesktop[index];
                 },
@@ -104,44 +120,6 @@ class _SHomeState extends State<SHome> {
         ).paddingAll,
       ),
     );
-  }
-}
-
-// Placeholder widgets for remaining sections
-
-class CourseProgramSection extends StatelessWidget {
-  const CourseProgramSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-class CourseBenefitsSection extends StatelessWidget {
-  const CourseBenefitsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-class CourseInstructorsSection extends StatelessWidget {
-  const CourseInstructorsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-class StudentReviewsSection extends StatelessWidget {
-  const StudentReviewsSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
 

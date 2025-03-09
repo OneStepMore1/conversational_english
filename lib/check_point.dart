@@ -1,3 +1,4 @@
+import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:power_state/power_state.dart';
@@ -36,6 +37,7 @@ class _SCheckPointState extends State<SCheckPoint> {
           minTextAdapt: true,
           splitScreenMode: true,
           builder: (_, child) {
+            PTheme.updateValues(context);
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               navigatorKey: NavigationService.key,

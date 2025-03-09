@@ -1,5 +1,3 @@
-import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/item_positions_listener.dart';
-import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/scrollable_positioned_list.dart';
 import 'package:power_state/power_state.dart';
 
 class CHome extends PowerController {
@@ -9,14 +7,12 @@ class CHome extends PowerController {
   int? hoverindexforsocialitems;
   int? hoverindexcategory = 0;
   bool texthover = false;
-  late ItemScrollController itemScrollController = ItemScrollController();
   bool lastIndexFound = false;
   gettinglastIndexofhomeitem({value}) {
     lastIndexFound = value;
     notifyListeners();
   }
 
-  late ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   getTextHover({bool? value}) {
     texthover = value!;
     notifyListeners();

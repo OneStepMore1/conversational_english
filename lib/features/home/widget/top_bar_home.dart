@@ -1,5 +1,4 @@
 import 'package:conversational_english/core/controllers/theme_controller.dart';
-import 'package:conversational_english/core/widgets/scrollable_positioned_list/src/scrollable_positioned_list.dart';
 import 'package:conversational_english/features/home/controller/home_controller.dart';
 import 'package:conversational_english/features/home/models/top_bar_model.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +6,9 @@ import 'package:power_state/power_state.dart';
 
 class TopBar extends StatelessWidget {
   final int? indexx;
-  final ItemScrollController? itemScrollCon;
-  const TopBar({super.key, required this.indexx, required this.itemScrollCon});
+  final ScrollController scrollController;
+
+  const TopBar({super.key, required this.indexx, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,13 @@ class TopBar extends StatelessWidget {
                   onTap: () {
                     homecontroller.getCurrentIndex(inde: indexx!);
 
-                    itemScrollCon!.scrollTo(
-                        index: homecontroller.currentIndex,
-                        duration: const Duration(seconds: 1),
-                        curve: Curves.easeInOutCubic);
+                    // Use the animateTo method of ScrollController to scroll to the specific index
+                    scrollController.animateTo(
+                      scrollController.position.maxScrollExtent *
+                          (indexx! / homeitems.length), // Adjust based on the index
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeInOutCubic,
+                    );
                   },
                   onHover: (value) {
                     homecontroller.gethoverbooleancategory(hoverCurrentIndex: indexx!, values: value);

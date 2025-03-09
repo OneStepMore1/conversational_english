@@ -42,7 +42,7 @@ class CTheme extends PowerController {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: PColors.border, // Used this as border color for light theme
     ),
-    scaffoldBackgroundColor: backGroundColor,
+    scaffoldBackgroundColor: Color(0xFFC5D5F2),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: ButtonStyle(
         padding: WidgetStatePropertyAll<EdgeInsetsGeometry>(
@@ -98,12 +98,12 @@ class CTheme extends PowerController {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        color: Colors.white,
-        fontSize: 14.sp,
+        color: Colors.black,
+        fontSize: PTheme.fontSizeX,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: TextStyle(
-        color: Colors.white,
+        color: Colors.black54,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -113,7 +113,7 @@ class CTheme extends PowerController {
         fontWeight: FontWeight.w400,
       ),
       displayLarge: TextStyle(
-        color: Colors.black54,
+        color: Colors.white,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -121,9 +121,9 @@ class CTheme extends PowerController {
   );
 
   late final ThemeData _darkTheme = ThemeData(
+    scaffoldBackgroundColor: Color(0xFF0D2B41),
     brightness: Brightness.dark,
     primaryColor: Colors.black,
-    scaffoldBackgroundColor: Colors.black,
     dividerColor: Colors.grey[300],
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
@@ -140,12 +140,12 @@ class CTheme extends PowerController {
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
       bodyMedium: TextStyle(
-        color: Colors.black12,
+        color: Colors.white12,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -155,7 +155,7 @@ class CTheme extends PowerController {
         fontWeight: FontWeight.w400,
       ),
       displayLarge: TextStyle(
-        color: Colors.black54,
+        color: Colors.black,
         fontSize: 14.sp,
         fontWeight: FontWeight.w400,
       ),

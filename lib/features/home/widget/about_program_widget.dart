@@ -59,6 +59,13 @@ class WAboutCourseSection extends StatelessWidget {
                 fontSize: 40.sp,
               ),
             ),
+            Text(
+              "Learn More About the Program",
+              style: context.theme.textTheme.bodyLarge?.copyWith(
+                fontSize: 20.sp,
+                decoration: TextDecoration.underline,
+              ),
+            ),
           ],
         ),
         gapY(150),

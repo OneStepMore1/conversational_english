@@ -1,6 +1,7 @@
 import 'package:conversational_english/core/widgets/buttons/primary_button.dart';
 import 'package:conversational_english/gen/assets.gen.dart';
 import 'package:conversational_english/responsive_widget.dart';
+import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +16,7 @@ class WHeaderSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          gapY(250),
+          gapY(PTheme.longGapY),
           Row(
             children: [
               Column(
@@ -23,14 +24,16 @@ class WHeaderSection extends StatelessWidget {
                 children: [
                   Text(
                     'CONVERSATIONAL ENGLISH \nFROM SCRATCH',
-                    style:
-                        context.theme.textTheme.bodyLarge?.copyWith(fontSize: Responsive.isDesktop() ? 60.sp : 16.sp),
+                    style: context.theme.textTheme.bodyLarge?.copyWith(
+                      fontSize: PTheme.fontSizeXL,
+                    ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     'Start speaking English in just 4 months!',
-                    style:
-                        context.theme.textTheme.bodyLarge?.copyWith(fontSize: Responsive.isDesktop() ? 30.sp : 16.sp),
+                    style: context.theme.textTheme.bodyLarge?.copyWith(
+                      fontSize: PTheme.fontSizeL,
+                    ),
                     textAlign: TextAlign.center,
                   ).gapLY,
                 ],

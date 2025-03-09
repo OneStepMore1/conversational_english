@@ -1,3 +1,4 @@
+import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,9 @@ class Responsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Update PTheme values dynamically based on the context
+    PTheme.updateValues(context);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth >= 1400) {
