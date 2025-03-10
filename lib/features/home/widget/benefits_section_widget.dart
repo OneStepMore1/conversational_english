@@ -69,7 +69,6 @@ class WBenefitsSection extends StatelessWidget {
             return _buildBenefitCard(benefit);
           },
         ),
-        gapY(PTheme.longGapY),
       ],
     );
   }

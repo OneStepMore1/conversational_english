@@ -68,7 +68,6 @@ class WAboutCourseSection extends StatelessWidget {
             ),
           ],
         ),
-        gapY(150),
       ],
     );
   }

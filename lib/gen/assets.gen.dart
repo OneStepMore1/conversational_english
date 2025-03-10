@@ -19,14 +19,43 @@ class $AssetsImagesGen {
   AssetGenImage get groupBg =>
       const AssetGenImage('assets/images/group_bg.png');
 
+  /// File path: assets/images/teacher1.jpg
+  AssetGenImage get teacher1 =>
+      const AssetGenImage('assets/images/teacher1.jpg');
+
+  /// File path: assets/images/teacher2.jpg
+  AssetGenImage get teacher2 =>
+      const AssetGenImage('assets/images/teacher2.jpg');
+
+  /// File path: assets/images/teacher3.jpg
+  AssetGenImage get teacher3 =>
+      const AssetGenImage('assets/images/teacher3.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [group, groupBg];
+  List<AssetGenImage> get values => [
+    group,
+    groupBg,
+    teacher1,
+    teacher2,
+    teacher3,
+  ];
+}
+
+class $AssetsLogoGen {
+  const $AssetsLogoGen();
+
+  /// File path: assets/logo/with_headset.svg
+  String get withHeadset => 'assets/logo/with_headset.svg';
+
+  /// List of all assets
+  List<String> get values => [withHeadset];
 }
 
 class Assets {
   const Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLogoGen logo = $AssetsLogoGen();
 }
 
 class AssetGenImage {

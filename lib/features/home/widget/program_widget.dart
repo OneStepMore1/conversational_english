@@ -1,3 +1,4 @@
+import 'package:conversational_english/responsive_widget.dart';
 import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class WProgramSection extends StatefulWidget {
 }
 
 class _WProgramSectionState extends State<WProgramSection> {
-  int _selectedTab = 0;
+  int selectedTab = 0;
 
   final List<Map<String, dynamic>> _courseSections = [
     {
@@ -48,98 +49,76 @@ class _WProgramSectionState extends State<WProgramSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           gapY(PTheme.longGapY),
-          _buildTabs(),
-          SizedBox(height: 20.h),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
-            child: _selectedTab == 0 ? _buildTabView() : _buildExpandableList(),
+            child: selectedTab == 0 ? _buildTabView() : _buildExpandableList(),
           ),
-          gapY(PTheme.longGapY),
         ],
       ),
     );
   }
 
-  Widget _buildTabs() {
-    return Center(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.grey[200],
-          borderRadius: BorderRadius.circular(30.r),
-        ),
-        padding: EdgeInsets.all(4.w),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _tabButton('Cards View', 0),
-            _tabButton('Expand View', 1),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _tabButton(String text, int index) {
-    return GestureDetector(
-      onTap: () => setState(() => _selectedTab = index),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-        decoration: BoxDecoration(
-          color: _selectedTab == index ? Colors.blue : Colors.transparent,
-          borderRadius: BorderRadius.circular(20.r),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
-            color: _selectedTab == index ? Colors.white : Colors.black87,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildTabView() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: _courseSections.length,
-      itemBuilder: (context, index) {
-        final section = _courseSections[index];
-        return Padding(
-          padding: EdgeInsets.only(bottom: 12.h),
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.r),
-                gradient: LinearGradient(
-                  colors: [section['color'].withOpacity(0.8), section['color'].withOpacity(0.4)],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(section['icon'], color: section['color']),
-                ),
-                title: Text(
-                  section['title'],
-                  style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                subtitle: Text(
-                  section['details'],
-                  style: TextStyle(fontSize: 14.sp, color: Colors.white70),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: Responsive.isDesktop() ? MediaQuery.of(context).size.width * 0.12 : 0,
+      ),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: _courseSections.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12.w,
+          mainAxisSpacing: 12.h,
+          childAspectRatio: 2.2,
+        ),
+        itemBuilder: (context, index) {
+          final section = _courseSections[index];
+          return Padding(
+            padding: EdgeInsets.only(bottom: 12.h),
+            child: Center(
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.r)),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: PTheme.spaceX),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.r),
+                    gradient: LinearGradient(
+                      colors: [section['color'].withOpacity(0.8), section['color'].withOpacity(0.4)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 22.r,
+                        child: Icon(section['icon'], color: section['color'], size: 28.sp),
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        section['title'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      SizedBox(height: 5.h),
+                      Text(
+                        section['details'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12.sp, color: Colors.white70),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 

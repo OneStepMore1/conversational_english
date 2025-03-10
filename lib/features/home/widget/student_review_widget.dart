@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WStudentReviewsSection extends StatelessWidget {
-  const WStudentReviewsSection({super.key});
+  WStudentReviewsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,89 +16,88 @@ class WStudentReviewsSection extends StatelessWidget {
           'Student Reviews',
           style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: PTheme.fontSizeXL),
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: reviews.length,
-          itemBuilder: (context, index) {
-            final review = reviews[index];
-            return _buildReviewCard(review);
-          },
+        // ListView.builder(
+        //   shrinkWrap: true,
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   itemCount: reviews.length,
+        //   itemBuilder: (context, index) {
+        //     final review = reviews[index];
+        //     return _buildReviewCard(review);
+        //   },
+        // ),
+        Wrap(
+          children: List.generate(
+            3,
+            (index) {
+              final review = reviews[index];
+              return _buildReviewCard(review);
+            },
+          ),
         ),
-        gapY(PTheme.longGapY),
       ],
     );
   }
 
   Widget _buildReviewCard(Map<String, dynamic> review) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.r),
-      ),
-      elevation: 4,
-      margin: EdgeInsets.only(bottom: 16.h),
-      child: Container(
-        padding: EdgeInsets.all(16.w),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 8,
-              offset: Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: PTheme.spaceX),
+      child: SizedBox(
+        width: 200.w,
+        child: Card(
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 30.r,
-                  backgroundImage: AssetImage(review['image']),
-                ),
-                SizedBox(width: 12.w),
-                Expanded(
-                  child: Text(
-                    review['name'],
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
-                    ),
+                ClipOval(
+                  child: Image.network(
+                    review['image'],
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Icon(Icons.format_quote, color: Colors.blueAccent, size: 32.sp),
+                Text(
+                  review['name'],
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 8.0),
+                Text(
+                  '${2} ⭐',
+                  style: TextStyle(color: Colors.amber),
+                ),
+                const SizedBox(height: 8.0),
+                Text(review['review']),
+                const SizedBox(height: 8.0),
+                Text(
+                  DateTime.now().day.toString(),
+                  // '${review.date.day}/${review.date.month}/${review.date.year}',
+                  style: TextStyle(color: Colors.grey),
+                ),
               ],
             ),
-            SizedBox(height: 12.h),
-            Text(
-              review['review'],
-              style: TextStyle(fontSize: 14.sp, color: Colors.black87),
-            ),
-          ],
+          ),
         ),
       ),
     );
   }
-}
 
-final List<Map<String, dynamic>> reviews = [
-  {
-    'name': 'Emily Johnson',
-    'review': 'This course helped me gain confidence in speaking English! The live lessons were super engaging.',
-    'image': Assets.images.group.path,
-  },
-  {
-    'name': 'Carlos Ramirez',
-    'review': 'Amazing course! The pronunciation tips and daily practice really made a difference for me.',
-    'image': Assets.images.group.path,
-  },
-  {
-    'name': 'Aisha Khan',
-    'review': 'Before this course, I struggled with conversations. Now, I can express myself fluently!',
-    'image': Assets.images.group.path,
-  },
-];
+  final List<Map<String, dynamic>> reviews = [
+    {
+      'name': 'Emily Johnson',
+      'review': 'This course helped me gain confidence in speaking English! The live lessons were super engaging.',
+      'image': Assets.images.group.path,
+    },
+    {
+      'name': 'Carlos Ramirez',
+      'review': 'Amazing course! The pronunciation tips and daily practice really made a difference for me.',
+      'image': Assets.images.group.path,
+    },
+    {
+      'name': 'Aisha Khan',
+      'review': 'Before this course, I struggled with conversations. Now, I can express myself fluently!',
+      'image': Assets.images.group.path,
+    },
+  ];
+}

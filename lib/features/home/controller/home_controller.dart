@@ -18,9 +18,15 @@ class CHome extends PowerController {
     notifyListeners();
   }
 
-  gethoverbooleancategory({values, hoverCurrentIndex}) {
-    onhovercategory = values;
-    hoverindexcategory = hoverCurrentIndex;
+  gethoverbooleancategory({required bool values, required int hoverCurrentIndex}) {
+    if (values == true) {
+      onhovercategory = values;
+      hoverindexcategory = hoverCurrentIndex;
+    } else {
+      onhovercategory = values;
+      hoverindexcategory = -1;
+    }
+
     notifyListeners();
   }
 
