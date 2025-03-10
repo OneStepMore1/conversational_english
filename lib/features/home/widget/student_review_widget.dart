@@ -42,7 +42,7 @@ class WStudentReviewsSection extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: PTheme.spaceX),
       child: SizedBox(
-        width: 200.w,
+        width: 300.w,
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: Padding(

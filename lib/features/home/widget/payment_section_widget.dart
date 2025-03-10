@@ -1,3 +1,7 @@
+import 'package:conversational_english/core/widgets/buttons/primary_button.dart';
+import 'package:conversational_english/core/widgets/buttons/secondary_button.dart';
+import 'package:conversational_english/responsive_widget.dart';
+import 'package:conversational_english/util/constants/colors.dart';
 import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
@@ -28,45 +32,52 @@ class _WPaymentSectionState extends State<WPaymentSection> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        AnimatedOpacity(
-          duration: Duration(seconds: 1),
-          opacity: opacity,
-          curve: Curves.easeInOut,
-          child: Text("Course Cost: 40,000 Rubles",
-              style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: PTheme.fontSizeXL)),
-        ),
+        Text("Course Cost: 40,000 Rubles",
+            style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: PTheme.fontSizeXL)),
         SizedBox(height: 20),
-        AnimatedOpacity(
-          duration: Duration(milliseconds: 700),
-          opacity: opacity,
-          curve: Curves.easeInOut,
-          child: Container(
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(12),
+        Container(
+          padding: EdgeInsets.all(15),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+              "✔ 20 Live Classes\n✔ Personalized Support\n✔ Course Materials & Exercises\n✔ Access to Q&A Sessions",
+              textAlign: TextAlign.center,
+              style: context.theme.textTheme.bodyLarge?.copyWith(
+                fontSize: PTheme.fontSizeX,
+              )),
+        ).gapLY,
+        Row(
+          children: [
+            Expanded(
+              child: WPrimaryButton(
+                height: PTheme.buttonHeight,
+                text: "Enroll in the Course",
+              ).gapX,
             ),
-            child: Text(
-                "✔ 20 Live Classes\n✔ Personalized Support\n✔ Course Materials & Exercises\n✔ Access to Q&A Sessions",
-                textAlign: TextAlign.center,
-                style: context.theme.textTheme.bodyLarge?.copyWith(
-                  fontSize: PTheme.fontSizeX,
-                )),
-          ),
+            Expanded(child: WSecondaryButton(text: "Inquire About Installments")),
+          ],
         ),
-        SizedBox(height: 40),
-        AnimatedOpacity(
-          duration: Duration(milliseconds: 700),
-          opacity: opacity,
-          curve: Curves.easeInOut,
-          child: Column(
-            children: [
-              AnimatedButton(title: "Enroll in the Course", color: Colors.orangeAccent),
-              SizedBox(height: 20),
-              AnimatedButton(title: "Inquire About Installments", color: Colors.blueAccent),
-            ],
-          ),
-        ),
+        gapY(PTheme.spaceLY),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "FAQs",
+              style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: PTheme.fontSizeL),
+            ).gapY,
+            Padding(
+              padding: EdgeInsets.only(right: Responsive.isDesktop() ? MediaQuery.of(context).size.width * 0.5 : 0),
+              child: ExpansionTile(
+                collapsedBackgroundColor: PColors.appBarColor,
+                backgroundColor: PColors.appBarColor,
+                title: Text("about class schedules"),
+                children: [Text("Here is the answer!")],
+              ),
+            ),
+          ],
+        )
       ],
     );
   }

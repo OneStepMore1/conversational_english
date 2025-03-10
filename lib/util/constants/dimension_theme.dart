@@ -29,7 +29,7 @@ class PTheme {
       boxRadius = 12.r;
       spaceX = 12.w;
       spaceY = 12.h;
-      buttonHeight = 54.h;
+      buttonHeight = 60.h;
       imageDefaultX = 135.w;
       imageDefaultY = 138.h;
       spaceLY = 90.h;

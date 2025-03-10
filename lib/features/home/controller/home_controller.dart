@@ -5,17 +5,17 @@ class CHome extends PowerController {
   bool onhoverforsocialitems = false;
   bool onhovercategory = false;
   int? hoverindexforsocialitems;
-  int? hoverindexcategory = 0;
+  int? hoverindexcategory = -1;
   bool texthover = false;
   bool lastIndexFound = false;
   gettinglastIndexofhomeitem({value}) {
     lastIndexFound = value;
-    notifyListeners();
+    notify();
   }
 
   getTextHover({bool? value}) {
     texthover = value!;
-    notifyListeners();
+    notify();
   }
 
   gethoverbooleancategory({required bool values, required int hoverCurrentIndex}) {
@@ -27,17 +27,21 @@ class CHome extends PowerController {
       hoverindexcategory = -1;
     }
 
-    notifyListeners();
+    notify();
   }
 
   gethoverbooleanforsocial({values, hoverCurrentIndex}) {
     onhoverforsocialitems = values;
     hoverindexforsocialitems = hoverCurrentIndex;
-    notifyListeners();
+    notify();
   }
 
   getCurrentIndex({int? inde}) {
     currentIndex = inde!;
+    notify();
+  }
+
+  notify() {
     notifyListeners();
   }
 }

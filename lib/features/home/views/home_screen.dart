@@ -1,3 +1,4 @@
+import 'package:conversational_english/core/controllers/theme_controller.dart';
 import 'package:conversational_english/features/home/widget/about_program_widget.dart';
 import 'package:conversational_english/features/home/widget/benefits_section_widget.dart';
 import 'package:conversational_english/features/home/widget/course_instructors_widget.dart';
@@ -20,6 +21,7 @@ class SHome extends StatefulWidget {
 
 class _SHomeState extends State<SHome> {
   final CHome cHome = PowerVault.put(CHome());
+  final CTheme cTheme = PowerVault.find();
   final PageController _pageController = PageController();
 
   List<Widget> homewidgetlistsdesktop = [
@@ -58,17 +60,30 @@ class _SHomeState extends State<SHome> {
               top: 5,
               right: 10,
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: List.generate(
-                  homewidgetlistsdesktop.length,
-                  (index) {
-                    return TopBar(
-                      indexx: index,
-                      pageController: _pageController, // Pass PageController instead
-                    );
-                  },
-                ),
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: List.generate(
+                      homewidgetlistsdesktop.length,
+                      (index) {
+                        return TopBar(
+                          indexx: index,
+                          pageController: _pageController, // Pass PageController instead
+                        );
+                      },
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        if (cTheme.currentIndex == 0) {
+                          cTheme.updateTheme(1);
+                        } else {
+                          cTheme.updateTheme(0);
+                        }
+                      },
+                      icon: const Icon(Icons.dark_mode)),
+                ],
               ),
             ),
           ],
