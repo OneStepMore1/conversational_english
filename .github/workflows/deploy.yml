@@ -3,7 +3,10 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches:
-      - main # Change this if your default branch is different
+      - main # Ensure your default branch is "main" (change if necessary)
+
+permissions:
+  contents: write # Ensures deployment action has necessary permissions
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.0' # Update based on your Flutter version
+          flutter-version: '3.29.0' # Adjust for your Flutter version
 
       - name: Install dependencies
         run: flutter pub get
@@ -24,12 +27,12 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web --base-href="/conversational_english/"
 
-      - name: Add .nojekyll (to prevent GitHub Pages issues)
+      - name: Add .nojekyll
         run: touch build/web/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # Deploy to gh-pages branch
-          folder: build/web # The folder to deploy
+          branch: gh-pages
+          folder: build/web
           clean: true
