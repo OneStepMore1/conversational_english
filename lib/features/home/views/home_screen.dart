@@ -8,6 +8,7 @@ import 'package:conversational_english/features/home/widget/payment_section_widg
 import 'package:conversational_english/features/home/widget/program_widget.dart';
 import 'package:conversational_english/features/home/widget/student_review_widget.dart';
 import 'package:conversational_english/features/home/widget/top_bar_home.dart';
+import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:power_state/power_state.dart';
@@ -48,14 +49,17 @@ class _SHomeState extends State<SHome> {
       body: SafeArea(
         child: Stack(
           children: [
-            PageView(
-              controller: _pageController,
-              scrollDirection: Axis.vertical,
-              children: homewidgetlistsdesktop,
-              onPageChanged: (index) {
-                cHome.getCurrentIndex(inde: index);
-              },
-            ).paddingAll,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: PTheme.spaceY),
+              child: PageView(
+                controller: _pageController,
+                scrollDirection: Axis.vertical,
+                children: homewidgetlistsdesktop,
+                onPageChanged: (index) {
+                  cHome.getCurrentIndex(inde: index);
+                },
+              ).paddingAll,
+            ),
             Positioned(
               top: 5,
               right: 10,

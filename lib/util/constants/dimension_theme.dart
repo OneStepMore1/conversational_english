@@ -18,8 +18,9 @@ class PTheme {
   static double fontSizeX = 14.sp;
   static double fontSizeL = 16.sp;
   static double fontSizeXL = 20.sp;
-  static double longGapY = 60.sp;
-  static double shortGapY = 40.sp;
+  static double longGapY = 60.h;
+  static double shortGapY = 40.h;
+  static double shortGapX = 40.w;
 
   // Method to update PTheme values based on the context
   static void updateValues(BuildContext context) {

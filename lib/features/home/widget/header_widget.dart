@@ -23,28 +23,8 @@ class _WHeaderSectionState extends State<WHeaderSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // gapY(PTheme.longGapY),
           Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'CONVERSATIONAL ENGLISH \nFROM SCRATCH',
-                    style: context.theme.textTheme.bodyLarge?.copyWith(
-                      fontSize: PTheme.fontSizeXL,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Start speaking English in just 4 months!',
-                    style: context.theme.textTheme.bodyLarge?.copyWith(
-                      fontSize: PTheme.fontSizeL,
-                    ),
-                    textAlign: TextAlign.center,
-                  ).gapLY,
-                ],
-              ),
               Expanded(
                 child: Column(
                   children: [
@@ -84,14 +64,35 @@ class _WHeaderSectionState extends State<WHeaderSection> {
                   ],
                 ),
               ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'CONVERSATIONAL ENGLISH \nFROM SCRATCH',
+                      textAlign: TextAlign.start,
+                      style: context.theme.textTheme.bodyLarge?.copyWith(
+                        fontSize: PTheme.fontSizeXL,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Start speaking English in just 4 months!',
+                      style: context.theme.textTheme.bodyLarge?.copyWith(
+                        fontSize: PTheme.fontSizeL,
+                      ),
+                      textAlign: TextAlign.center,
+                    ).gapLY,
+                    WPrimaryButton(
+                      height: 100.h,
+                      width: Responsive.isDesktop() ? 300.w : 100,
+                      text: "Enroll in the Course",
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-          WPrimaryButton(
-            height: 100.h,
-            width: Responsive.isDesktop() ? 300.w : 100,
-            text: "Enroll in the Course",
-          ),
-          gapY(100),
         ],
       ),
     );
