@@ -13,6 +13,7 @@ class WAboutCourseSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        gapY(PTheme.shortGapY),
         Align(
           alignment: Alignment.center,
           child: Text(

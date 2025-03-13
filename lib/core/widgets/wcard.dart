@@ -1,4 +1,3 @@
-import 'package:conversational_english/util/constants/colors.dart';
 import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +27,10 @@ class _WCardState extends State<WCard> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
-              transform: (_isHovered.value) ? (Matrix4.identity()..scale(.9)) : Matrix4.identity(),
+              transform: (_isHovered.value) ? (Matrix4.identity()..scale(.85)) : Matrix4.identity(),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: _isHovered.value
-                    ? PColors.appBarColor.withValues(alpha: 0.8)
-                    : context.theme.textTheme.displayLarge?.color,
+                color: context.theme.textTheme.displayLarge?.color,
                 borderRadius: BorderRadius.circular(PTheme.boxRadius),
                 boxShadow: [
                   BoxShadow(

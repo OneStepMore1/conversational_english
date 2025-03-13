@@ -47,7 +47,7 @@ class WBenefitsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        gapY(PTheme.spaceY),
+        gapY(PTheme.shortGapY),
         Align(
           alignment: Alignment.center,
           child: Text(

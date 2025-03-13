@@ -40,6 +40,7 @@ class PTheme {
       fontSizeL = 35.sp;
       fontSizeXL = 60.sp;
       longGapY = 250.sp;
+      shortGapY = 40.h;
     } else if (Responsive.isTablet(context: context)) {
       paddingX = 18.w;
       paddingY = 18.h;
@@ -56,6 +57,7 @@ class PTheme {
       fontSizeL = 30.sp;
       fontSizeXL = 40.sp;
       longGapY = 200.sp;
+      shortGapY = 30.h;
     } else {
       paddingX = 16.w;
       paddingY = 12.h;
@@ -72,6 +74,7 @@ class PTheme {
       fontSizeL = 16.sp;
       fontSizeXL = 20.sp;
       longGapY = 60.sp;
+      shortGapY = 20.h;
     }
   }
 }
