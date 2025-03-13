@@ -1,19 +1,19 @@
 import 'package:conversational_english/core/widgets/buttons/primary_button.dart';
 import 'package:conversational_english/core/widgets/buttons/secondary_button.dart';
 import 'package:conversational_english/responsive_widget.dart';
-import 'package:conversational_english/util/constants/colors.dart';
 import 'package:conversational_english/util/constants/dimension_theme.dart';
 import 'package:conversational_english/util/extensions/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class WPaymentSection extends StatefulWidget {
-  const WPaymentSection({super.key});
+class WPriceSection extends StatefulWidget {
+  const WPriceSection({super.key});
 
   @override
-  State<WPaymentSection> createState() => _WPaymentSectionState();
+  State<WPriceSection> createState() => _WPriceSectionState();
 }
 
-class _WPaymentSectionState extends State<WPaymentSection> {
+class _WPriceSectionState extends State<WPriceSection> {
   double opacity = 0.0;
 
   @override
@@ -49,17 +49,20 @@ class _WPaymentSectionState extends State<WPaymentSection> {
               )),
         ).gapLY,
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: WPrimaryButton(
-                height: PTheme.buttonHeight,
-                text: "Enroll in the Course",
-              ).gapX,
+            WPrimaryButton(
+              height: 100.h,
+              width: Responsive.isDesktop() ? 300.w : 100,
+              text: "Enroll in the Course",
+            ).gapX,
+            WSecondaryButton(
+              text: "Inquire About Installments",
+              height: 100.h,
+              width: Responsive.isDesktop() ? 300.w : 100,
             ),
-            Expanded(child: WSecondaryButton(text: "Inquire About Installments")),
           ],
-        ),
-        gapY(PTheme.spaceLY),
+        ).gapY,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -68,66 +71,38 @@ class _WPaymentSectionState extends State<WPaymentSection> {
               style: context.theme.textTheme.bodyLarge?.copyWith(fontSize: PTheme.fontSizeL),
             ).gapY,
             Padding(
-              padding: EdgeInsets.only(right: Responsive.isDesktop() ? MediaQuery.of(context).size.width * 0.5 : 0),
-              child: ExpansionTile(
-                collapsedBackgroundColor: PColors.appBarColor,
-                backgroundColor: PColors.appBarColor,
-                title: Text("about class schedules"),
-                children: [Text("Here is the answer!")],
+              padding: EdgeInsets.only(right: Responsive.isDesktop() ? MediaQuery.of(context).size.width * 0.6 : 0),
+              child: Column(
+                children: List.generate(
+                  3,
+                  (indexOfFaq) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: PTheme.spaceY),
+                      child: Theme(
+                        data: ThemeData().copyWith(dividerColor: Colors.transparent),
+                        child: ExpansionTile(
+                          collapsedBackgroundColor: context.theme.textTheme.displayLarge?.color,
+                          backgroundColor: context.theme.textTheme.displayLarge?.color,
+                          title: Text(
+                            "about class schedules",
+                            style: context.theme.textTheme.bodyLarge,
+                          ),
+                          children: [
+                            Text(
+                              "Here is the answer!",
+                              style: context.theme.textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],
-        )
-      ],
-    );
-  }
-}
-
-class AnimatedButton extends StatefulWidget {
-  final String title;
-  final Color color;
-
-  const AnimatedButton({super.key, required this.title, required this.color});
-
-  @override
-  State<AnimatedButton> createState() => _AnimatedButtonState();
-}
-
-class _AnimatedButtonState extends State<AnimatedButton> {
-  double scale = 1.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: (_) => setState(() => scale = 0.9),
-      onTapUp: (_) => setState(() => scale = 1.0),
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
-        transform: Matrix4.identity()..scale(scale),
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 15),
-          decoration: BoxDecoration(
-            color: widget.color,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: widget.color.withValues(alpha: 0.5),
-                blurRadius: 10,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
-          child: Center(
-            child: Text(
-              widget.title,
-              style: context.theme.textTheme.bodyLarge?.copyWith(
-                fontSize: PTheme.fontSizeX,
-              ),
-            ),
-          ),
         ),
-      ),
+      ],
     );
   }
 }

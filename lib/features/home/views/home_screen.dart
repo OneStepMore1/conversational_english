@@ -31,7 +31,7 @@ class _SHomeState extends State<SHome> {
     WBenefitsSection(),
     WCourseInstructorsSection(),
     WStudentReviewsSection(),
-    WPaymentSection(),
+    WPriceSection(),
   ];
 
   void scrollToIndex(int index) {
