@@ -144,7 +144,7 @@ class _WPriceSectionState extends State<WPriceSection> {
                               child: Column(
                                 children: [
                                   InkWell(
-                                    onTap: socialitems[index].onTap!,
+                                    // onTap: socialitems[index].onTap!,
                                     hoverColor: Colors.transparent,
                                     onHover: (value) {
                                       homecontroller.gethoverbooleanforsocial(values: value, hoverCurrentIndex: index);
