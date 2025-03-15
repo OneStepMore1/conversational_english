@@ -4,7 +4,7 @@ import 'package:conversational_english/features/home/widget/benefits_section_wid
 import 'package:conversational_english/features/home/widget/course_instructors_widget.dart';
 import 'package:conversational_english/features/home/widget/header_widget.dart';
 import 'package:conversational_english/features/home/controller/home_controller.dart';
-import 'package:conversational_english/features/home/widget/payment_section_widget.dart';
+import 'package:conversational_english/features/home/widget/price_section_widget.dart';
 import 'package:conversational_english/features/home/widget/program_widget.dart';
 import 'package:conversational_english/features/home/widget/student_review_widget.dart';
 import 'package:conversational_english/features/home/widget/top_bar_home.dart';

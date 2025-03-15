@@ -82,6 +82,7 @@ class WPrimaryButtonState extends State<WPrimaryButton> {
         height: widget.height ?? PTheme.fieldHeight,
         width: widget.width ?? ScreenUtil().screenWidth,
         decoration: BoxDecoration(
+          color: widget.color,
           borderRadius: BorderRadius.circular(PTheme.boarderRadius),
           border: widget.border
               ? Border.all(
